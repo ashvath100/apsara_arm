@@ -65,7 +65,7 @@
     </link>
   </xacro:macro>
 
-  <xacro:macro name="m_link_mesh" params="name origin_xyz origin_rpy meshfile1 mass ixx ixy ixz iyy iyz izz">
+  <xacro:macro name="m_link_mesh" params="name origin_xyz origin_rpy meshfile meshscale mass ixx ixy ixz iyy iyz izz">
     <link name="${name}">
       <inertial>
         <mass value="${mass}" />
@@ -75,14 +75,15 @@
       <collision>
         <origin rpy="${origin_rpy}" xyz="${origin_xyz}" />
         <geometry>
-          <mesh filename="${meshfile1}" scale="0.001 0.001 0.001"/>
+          <mesh filename="${meshfile}" scale="${meshscale}"/>
         </geometry>
       </collision>
       <visual>
         <origin rpy="${origin_rpy}" xyz="${origin_xyz}" />
         <geometry>
-          <mesh filename="${meshfile1}" scale="0.001 0.001 0.001"/>
+          <mesh filename="${meshfile}" scale="${meshscale}"/>
         </geometry>
+        <material name="light_black"/>
       </visual>
     </link>
   </xacro:macro>

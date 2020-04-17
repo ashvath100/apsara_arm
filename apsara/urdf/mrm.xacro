@@ -15,7 +15,7 @@
               iyy="0" iyz="0"
               izz="0"
               size="0.1 0.1 0.01" />
-         
+              
   <m_joint name="${link_00_name}__${link_01_name}" type="revolute"
            axis_xyz="0 0 1"
            origin_rpy="0 0 0" origin_xyz="0 0 -0.0915"
@@ -28,8 +28,8 @@
               ixx="13.235" ixy="0" ixz="0"
               iyy="13.235" iyz="0"
               izz="9.655"
-              meshfile1="package://apsara/meshes/link01.stl"
-             />
+              meshfile="package://apsara/meshes/link01.stl"
+              meshscale="0.001 0.001 0.001" />
   
   <m_joint name="${link_01_name}__${link_02_name}" type="revolute"
            axis_xyz="0 1 0"
@@ -43,8 +43,8 @@
               ixx="13.235" ixy="0" ixz="0"
               iyy="13.235" iyz="0"
               izz="9.655"
-              meshfile1="package://apsara/meshes/link12.stl"
-             />
+              meshfile="package://apsara/meshes/link12.stl"
+              meshscale="0.001 0.001 0.001" />
   
   <m_joint name="${link_02_name}__${link_03_name}" type="revolute"
            axis_xyz="0 1 0"
@@ -58,8 +58,8 @@
               ixx="13.235" ixy="0" ixz="0"
               iyy="13.235" iyz="0"
               izz="9.655"
-              meshfile1="package://apsara/meshes/link23.stl"
-               />
+              meshfile="package://apsara/meshes/link23.stl"
+              meshscale="0.001 0.001 0.001" />
   
   <m_joint name="${link_03_name}__${link_04_name}" type="revolute"
            axis_xyz="0 0 1"
@@ -73,27 +73,14 @@
               ixx="13.235" ixy="0" ixz="0"
               iyy="13.235" iyz="0"
               izz="9.655"
-              meshfile1="package://apsara/meshes/link34.stl"
-               />
+              meshfile="package://apsara/meshes/link34.stl"
+              meshscale="0.001 0.001 0.001" />
   
   <m_joint name="${link_04_name}__${link_05_name}" type="revolute"
            axis_xyz="0 1 0"
-             meshfile1="package://apsara/meshes/link45.stl"
-               />
-
-  <m_joint name="${link_05_name}__${link_06_name}" type="revolute"
-           axis_xyz="0 0 1"
-           origin_rpy="0 0 0" origin_xyz="0 0 0.1628"
-           parent="link_05" child="link_06"
-           limit_e="1000" limit_l="-3.14" limit_u="3.14" limit_v="0.5" />
-
-  <m_link_box name="${link_06_name}"
-              origin_rpy="0 0 0" origin_xyz="0 0 0.045"
-              mass="1024"
-              ixx="170.667" ixy="0" ixz="0"
-              iyy="170.667" iyz="0"
-              izz="170.667"
-              size="0.1 0.1 0.1" />imit_e="1000" limit_l="-2.24" limit_u="2.24" limit_v="0.5" />
+           origin_rpy="0 0 0" origin_xyz="0 0 0.1493"
+           parent="link_04" child="link_05"
+           limit_e="1000" limit_l="-2.24" limit_u="2.24" limit_v="0.5" />
            
   <m_link_mesh name="${link_05_name}"
               origin_rpy="0 0 0" origin_xyz="0 0 -0.7085"
@@ -101,7 +88,8 @@
               ixx="13.235" ixy="0" ixz="0"
               iyy="13.235" iyz="0"
               izz="9.655"
-              meshfile1="package://apsara/meshes/link45.stl" />
+              meshfile="package://apsara/meshes/link45.stl"
+              meshscale="0.001 0.001 0.001" />
 
   <m_joint name="${link_05_name}__${link_06_name}" type="revolute"
            axis_xyz="0 0 1"
@@ -117,7 +105,7 @@
               izz="170.667"
               size="0.1 0.1 0.1" />
 
-   END - Robot description -->
+  <!-- END - Robot description -->
   
   <gazebo>
     <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
