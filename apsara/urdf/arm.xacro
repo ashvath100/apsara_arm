@@ -308,7 +308,7 @@
 </joint>
 
 <sensor1_d435 parent="cam_pole_link">
-    <origin xyz="0.0 0.0 0.5" rpy="0 0 1.5708"/>
+    <origin xyz="0.0 0.0 0.5" rpy="0 0 -1.5708"/>
 </sensor1_d435>
 
 <link name="cam_pole_link2">
@@ -326,7 +326,7 @@
 </joint>
 
 <sensor2_d435 parent="cam_pole_link2">
-    <origin xyz="0.0 0.0 0.5" rpy="0 0 -1.5708"/>
+    <origin xyz="0.0 0.0 0.5" rpy="0 0 1.5708"/>
 </sensor2_d435>
 
 
