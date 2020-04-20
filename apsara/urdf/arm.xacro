@@ -2,6 +2,26 @@
 
 <robot name="arm" xmlns:xacro="http://www.ros.org/wiki/xacro">
 
+  <xacro:include filename="$(find apsara)/urdf/1_d435.urdf.xacro" />
+
+  <xacro:include filename="$(find apsara)/urdf/2_d435.urdf.xacro" />
+
+     <!-- world will be root link-->
+  <link name="world" />
+   
+  <joint name="world_joint" type="fixed">
+    <parent link="world" />
+    <child link = "pole_link" />
+    <origin xyz="0.0 0.0 0.1" rpy="0.0 0.0 0.0" />
+  </joint>
+
+  <link name="pole_link">
+    <visual>
+      <geometry>
+        <cylinder length="1.5" radius="0.1"/>
+      </geometry>
+    </visual>
+  </link>
 
     <link name="base_link">
       <inertial>
@@ -22,6 +42,13 @@
         </geometry>
       </visual>
     </link>
+  
+
+   <joint name="pole_joint" type="fixed">
+      <parent link="pole_link" />
+      <child link="base_link" />
+      <origin xyz="0 0 0.75"/>
+    </joint>
 
 
     <link name="link_01">
@@ -55,10 +82,10 @@
     <transmission name="trans_base_link__link_01">
       <type>transmission_interface/SimpleTransmission</type>
       <joint name="base_link__link_01">
-        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
       </joint>
       <actuator name="motor_base_link__link_01">
-        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
         <mechanicalReduction>1</mechanicalReduction>
       </actuator>
     </transmission>
@@ -73,10 +100,10 @@
     <transmission name="trans_link_01__link_02">
       <type>transmission_interface/SimpleTransmission</type>
       <joint name="link_01__link_02">
-        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
       </joint>
       <actuator name="motor_link_01__link_02">
-        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
         <mechanicalReduction>1</mechanicalReduction>
       </actuator>
     </transmission>
@@ -112,10 +139,10 @@
     <transmission name="trans_link_02__link_03">
       <type>transmission_interface/SimpleTransmission</type>
       <joint name="link_02__link_03">
-        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
       </joint>
       <actuator name="motor_link_02__link_03">
-        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
         <mechanicalReduction>1</mechanicalReduction>
       </actuator>
     </transmission>
@@ -152,10 +179,10 @@
     <transmission name="trans_link_03__link_04">
       <type>transmission_interface/SimpleTransmission</type>
       <joint name="link_03__link_04">
-        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
       </joint>
       <actuator name="motor_link_03__link_04">
-        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
         <mechanicalReduction>1</mechanicalReduction>
       </actuator>
     </transmission>
@@ -192,10 +219,10 @@
     <transmission name="trans_link_04__link_05">
       <type>transmission_interface/SimpleTransmission</type>
       <joint name="link_04__link_05">
-        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
       </joint>
       <actuator name="motor_link_04__link_05">
-        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
         <mechanicalReduction>1</mechanicalReduction>
       </actuator>
     </transmission>
@@ -231,10 +258,10 @@
     <transmission name="trans_link_05__link_06">
       <type>transmission_interface/SimpleTransmission</type>
       <joint name="link_05__link_06">
-        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
       </joint>
       <actuator name="motor_link_05__link_06">
-        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
         <mechanicalReduction>1</mechanicalReduction>
       </actuator>
     </transmission>
@@ -260,6 +287,47 @@
         </geometry>
       </visual>
     </link>
+  
+  <gazebo>
+    <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+    </plugin>
+  </gazebo>
+
+  <link name="cam_pole_link">
+    <visual>
+      <geometry>
+        <cylinder length="1" radius="0.03"/>
+      </geometry>
+    </visual>
+  </link>
+
+<joint name="cam_pole_joint" type="fixed">
+      <parent link="world" />
+      <child link="cam_pole_link" />
+      <origin xyz="0 2 0.5"/>
+</joint>
+
+<sensor1_d435 parent="cam_pole_link">
+    <origin xyz="0.0 0.0 0.5" rpy="0 0 1.5708"/>
+</sensor1_d435>
+
+<link name="cam_pole_link2">
+    <visual>
+      <geometry>
+        <cylinder length="1" radius="0.03"/>
+      </geometry>
+    </visual>
+</link>
+
+<joint name="cam_pole_joint2" type="fixed">
+      <parent link="world" />
+      <child link="cam_pole_link2" />
+      <origin xyz="0 -2 0.5"/>
+</joint>
+
+<sensor2_d435 parent="cam_pole_link2">
+    <origin xyz="0.0 0.0 0.5" rpy="0 0 -1.5708"/>
+</sensor2_d435>
 
 
 
